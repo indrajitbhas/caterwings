@@ -101,3 +101,7 @@ export class DisheComponent implements OnInit, OnDestroy{
     this.totalPerHead = parseFloat((this.totalPrice / this.currentDish.person_number).toFixed(1));
   }
 }
+
+// Joke time:
+// Q. How does a computer get drunk?
+// A. It takes screenshots.
