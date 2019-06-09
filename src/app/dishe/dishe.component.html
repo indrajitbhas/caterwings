@@ -1,9 +1,14 @@
 <div class="container">
+<div class="col-md-12 py-4">
+  <button type="button" class="" [routerLink]="['/']">
+    Go to Menu
+  </button>
+</div>
 <div class="col-md-12">
   <h6 class="text-bold conf">Build Your Own Dish</h6><h5 class="inl">(Mininum orden: {{currentDish.person_number}})</h5>
   <hr>
 </div>
-<div class="col-md-12" >
+<div class="col-md-12" (change)="getTotalPrice()">
   <div class="col-md-12 border rounded shadow-sm menu-item">
     <div class="row">
       <div class="col-md-4">
@@ -31,7 +36,7 @@
       <div id="collapseOne" [ngClass]="{'collapse show':i==0, 'collapse':i>0}" aria-labelledby="headingOne" data-parent="#accordionExample">
         <div class="card-body">
           <div class="form-check" *ngFor="let option of topping.options; let i2 = index">
-            <input class="form-check-input" [checked]="(topping.quantity_minimum > 0 && i2 == 0) ? true : false" (change)="checkNumberOfCheckedInputs($event, topping.quantity_maximum, option.price)" type="checkbox" value="{{option.price}}" id="{{option.name}}">
+            <input class="form-check-input" data-price="option.price" [checked]="(topping.quantity_minimum > 0 && i2 == 0) ? true : false" (change)="checkNumberOfCheckedInputs($event, topping.quantity_maximum)" type="checkbox" value="{{option.price}}" id="{{'cw' + option.id}}">
             <label class="form-check-label" for="{{option.name}}">
               {{option.name}}<br>
               <span *ngIf="option.price > 0"> (+ {{option.price | currency:locale:"symbol-narrow"}} per head)</span>
@@ -68,13 +73,13 @@
       {{totalPerHead | currency:locale:"symbol-narrow"}} Per head
     </div>
     <div class="col-md-1 offset-md-3 px-0 center-1">
-        <input type="number"  class="form-control" (change) = "numberOfHeadsChanged($event)" value="1" id="numberOfHeads" aria-describedby="emailHelp">
+        <input type="number" (change)="getTotalPrice()" class="form-control" value="1" id="numberOfHeads" aria-describedby="emailHelp">
     </div>
     <div class="col-md-1 center-1">
       Pers.
     </div>
-    <div class="col-md-2 justify-content-end  text-right center-1">
-      <button type="button" class="btn salmon"  data-toggle="button" [disabled]= "true" aria-pressed="false" autocomplete="off">
+    <div class="col-md-2 justify-content-end  text-right center-1" >
+      <button type="button" class="btn salmon"  data-toggle="button" [disabled]= "false" aria-pressed="false" autocomplete="off">
         ADD
       </button>
     </div>
