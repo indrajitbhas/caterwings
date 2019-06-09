@@ -1,0 +1,26 @@
+/* You can add global styles to this file, and also import other style files */
+h6.text-secondary{
+  font-size: 0.8em;
+  color:#c3cbd2 !important;
+}
+
+.btn.salmon{
+  background-color: #fb9f61 !important;
+  border-radius: 1px !important;
+  color: white;
+  padding: 10px 15px !important;
+}
+
+/* .salmon:hover{
+  color: white !important
+} */
+
+.menu-item{
+  padding: 22px 15px;
+}
+
+hr{
+  margin-top:0 !important;
+  height: 1px !important;
+  background-color: orange;
+}

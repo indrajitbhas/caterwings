@@ -1,0 +1,37 @@
+  <div class="container">
+  <div class="col-md-12">
+    <h3 class="test-bold">Dishes</h3>
+    <hr>
+  </div>
+  <div *ngFor="let dish of menu" class="col-md-12" style="margin-top: 10px">
+    <div class="col-md-12 border rounded shadow-sm menu-item">
+      <div class="row">
+        <div class="col-md-4">
+          <img class="bd-placeholder-img" src="{{dish.Product_image || 'https://via.placeholder.com/500x300/f98e71/fff&text=Image'}}" width="100%">
+        </div>
+        <div class="col-md-8">
+          <div class="row">
+            <div class="col-md-8 pl-0">
+              <h6 class="mb-0 font-weight-bold">{{dish.product}}</h6>
+              <h6 class="font-weight-bold text-secondary">{{"Minimum order: " + dish.person_number}}</h6>
+            </div>
+            <div class="col-md-4 justify-content-end">
+              <h6 class="mb-0 text-right"><strong>{{dish.price_net | currency:locale:"symbol-narrow"}}</strong> per head</h6>
+              <h6 class="font-weight-bold text-right text-secondary">plus VAT</h6>
+            </div>
+            <div class="col-md-12 pl-0">
+                <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4 offset-md-8  text-right center-1">
+          <button type="button" class="btn salmon" data-toggle="button" aria-pressed="false" autocomplete="off" [routerLink]="['/dishconfig', dish.product_id]">
+            VIEW
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+<!-- </div> -->

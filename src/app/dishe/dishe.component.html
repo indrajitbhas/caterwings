@@ -1,0 +1,83 @@
+<div class="container">
+<div class="col-md-12">
+  <h6 class="text-bold conf">Build Your Own Dish</h6><h5 class="inl">(Mininum orden: {{currentDish.person_number}})</h5>
+  <hr>
+</div>
+<div class="col-md-12" >
+  <div class="col-md-12 border rounded shadow-sm menu-item">
+    <div class="row">
+      <div class="col-md-4">
+        <img class="bd-placeholder-img" src="{{currentDish.Product_image || 'https://via.placeholder.com/500x300/f98e71/fff&text=Image'}}" width="100%">
+      </div>
+      <div class="col-md-8">
+        <div class="row">
+          <div class="col-md-12 pl-0">
+              <p class="card-text mb-auto">{{currentDish.product_description_long || "Description not available"}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <h6 class="pt-3">Toppings</h6>
+  <div class="accordion" id="accordionExample">
+    <div class="card" *ngFor="let topping of currentDish.toppings; let i = index">
+      <div class="card-header" id="headingOne">
+        <h5 class="mb-0">
+          <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+            {{topping.name}}<span *ngIf = "topping.quantity_maximum">&nbsp;(Minimum {{topping.quantity_minimum}} / Maximum {{topping.quantity_maximum}})</span>
+          </button>
+        </h5>
+      </div>
+      <div id="collapseOne" [ngClass]="{'collapse show':i==0, 'collapse':i>0}" aria-labelledby="headingOne" data-parent="#accordionExample">
+        <div class="card-body">
+          <div class="form-check" *ngFor="let option of topping.options; let i2 = index">
+            <input class="form-check-input" [checked]="(topping.quantity_minimum > 0 && i2 == 0) ? true : false" (change)="checkNumberOfCheckedInputs($event, topping.quantity_maximum, option.price)" type="checkbox" value="{{option.price}}" id="{{option.name}}">
+            <label class="form-check-label" for="{{option.name}}">
+              {{option.name}}<br>
+              <span *ngIf="option.price > 0"> (+ {{option.price | currency:locale:"symbol-narrow"}} per head)</span>
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header" id="headingFour">
+        <h5 class="mb-0">
+          <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+            Special instructions
+          </button>
+        </h5>
+      </div>
+      <div id="collapseFour" class="collapse" aria-labelledby="headingFourr" data-parent="#accordionExample">
+        <div class="card-body">
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="e.g. no onions, no mayo"></textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="col-md-12">
+  <hr>
+</div>
+<div class="col-md-12" style="margin-bottom: 20px">
+  <div class="row">
+    <div class="col-md-2 center-1">
+      <h5 class="mb-0">{{totalPrice | currency:locale:"symbol-narrow"}}</h5>
+    </div>
+    <div class="col-md-3 center-1">
+      {{totalPerHead | currency:locale:"symbol-narrow"}} Per head
+    </div>
+    <div class="col-md-1 offset-md-3 px-0 center-1">
+        <input type="number"  class="form-control" (change) = "numberOfHeadsChanged($event)" value="1" id="numberOfHeads" aria-describedby="emailHelp">
+    </div>
+    <div class="col-md-1 center-1">
+      Pers.
+    </div>
+    <div class="col-md-2 justify-content-end  text-right center-1">
+      <button type="button" class="btn salmon"  data-toggle="button" [disabled]= "true" aria-pressed="false" autocomplete="off">
+        ADD
+      </button>
+    </div>
+  </div>
+</div>
+</div>

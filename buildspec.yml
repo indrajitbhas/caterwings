@@ -1,0 +1,25 @@
+version: 0.1
+environment_variables:
+    plaintext:
+        S3_BUCKET: "caterwingsmain"
+        BUILD_ENV: "prod"
+        APP_NAME: "caterwings"
+phases:
+    install:
+        commands:
+            - echo Installing source NPM dependencies...
+            - npm install
+            - npm install -g @angular/cli
+    build:
+        commands:
+            - echo Build started on `date`
+            - ng build --${BUILD_ENV} --base-href http://caterwingsmain.s3-website-us-east-1.amazonaws.com/
+    post_build:
+         commands:
+            - aws s3 cp dist s3://${S3_BUCKET} --recursive
+            - echo Build completed on `date`
+artifacts:
+    files:
+        - '**/*'
+    base-directory: 'dist*'
+    discard-paths: yes

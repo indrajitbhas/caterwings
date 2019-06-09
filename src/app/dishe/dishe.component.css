@@ -1,0 +1,32 @@
+.conf{
+  font-size: 1em;
+  color: #32363ae0 !important;
+  display: inline;
+}
+
+.inl{
+  display: inline-block !important;
+  font-size: 0.9em;
+  margin-left: 10px;
+  color: #6c757de0;
+}
+
+.collapsables{
+    margin-top:40px;
+    padding: 0 10px;
+}
+
+.clickable{
+    cursor: pointer;
+}
+
+.panel-heading span {
+	margin-top: -20px;
+	font-size: 15px;
+}
+
+.center-1{
+  margin-top: auto;
+  margin-bottom: auto;
+
+}
