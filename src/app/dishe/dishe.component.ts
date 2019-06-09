@@ -63,7 +63,7 @@ export class DisheComponent implements OnInit{
   }
 
   totalPerH(){
-    this.totalPerHead = (this.totalPrice / this.currentDish.person_number).toFixed(1)
+    this.totalPerHead = parseFloat((this.totalPrice / this.currentDish.person_number).toFixed(1));
   }
 
   addAmount(e, p){
