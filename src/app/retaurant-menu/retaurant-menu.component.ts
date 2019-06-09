@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { of, Subject, from } from 'rxjs';
 import { MainService } from '../main.service';
 import { Router } from '@angular/router';
 
@@ -22,9 +21,8 @@ export class RetaurantMenuComponent implements OnInit {
   }
 
   showMenu():void{
-    this.services.getMenu().subscribe((data) => {
+    this.services.getMenu().subscribe(data => {
       this.menu = data;
-      //console.log(this.menu)
     })
   }
 }
